@@ -3,7 +3,7 @@ const std = @import("std");
 pub fn create_cimgui(b: *std.Build, target: std.zig.CrossTarget, optimize: std.builtin.OptimizeMode) !*std.Build.CompileStep {
     var c_flags = std.ArrayList([]const u8).init(b.allocator);
 
-    const cimgui = b.addSharedLibrary(.{
+    const cimgui = b.addStaticLibrary(.{
         .name = "cimgui",
         .target = target,
         .optimize = optimize,
