@@ -15,9 +15,9 @@ pub fn create_cimgui(b: *std.Build, target: std.zig.CrossTarget, optimize: std.b
         try c_flags.append("-fPIC");
     }
 
-    cimgui.addIncludePath(root_path ++ "../wgpu-native/ffi");
-    cimgui.addIncludePath(root_path ++ "../SDL/include");
-    cimgui.addIncludePath(root_path ++ "imgui/");
+    cimgui.addIncludePath(.{ .path = root_path ++ "../wgpu-native/ffi" });
+    cimgui.addIncludePath(.{ .path = root_path ++ "../SDL/include" });
+    cimgui.addIncludePath(.{ .path = root_path ++ "imgui/" });
 
     cimgui.addCSourceFiles(&.{root_path ++ "cimgui.cpp"}, c_flags.items);
     cimgui.addCSourceFiles(&.{
