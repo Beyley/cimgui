@@ -19,8 +19,8 @@ pub fn create_cimgui(b: *std.Build, target: std.zig.CrossTarget, optimize: std.b
     cimgui.addIncludePath(.{ .path = root_path ++ "../SDL/include" });
     cimgui.addIncludePath(.{ .path = root_path ++ "imgui/" });
 
-    cimgui.addCSourceFiles(&.{root_path ++ "cimgui.cpp"}, c_flags.items);
-    cimgui.addCSourceFiles(&.{
+    cimgui.addCSourceFiles(.{ .files = &.{root_path ++ "cimgui.cpp"}, .flags = c_flags.items });
+    cimgui.addCSourceFiles(.{ .files = &.{
         root_path ++ "imgui/imgui.cpp",
         root_path ++ "imgui/imgui_draw.cpp",
         root_path ++ "imgui/imgui_tables.cpp",
@@ -28,7 +28,7 @@ pub fn create_cimgui(b: *std.Build, target: std.zig.CrossTarget, optimize: std.b
         root_path ++ "imgui/imgui_demo.cpp",
         root_path ++ "imgui/backends/imgui_impl_wgpu.cpp",
         root_path ++ "imgui/backends/imgui_impl_sdl2.cpp",
-    }, c_flags.items);
+    }, .flags = c_flags.items });
 
     //Link libc and libc++, libc++ for wgpu
     cimgui.linkLibC();
