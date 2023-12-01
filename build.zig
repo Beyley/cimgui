@@ -41,7 +41,7 @@ pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    var cimgui = try create_cimgui(b, target, optimize);
+    const cimgui = try create_cimgui(b, target, optimize);
 
     b.installArtifact(cimgui);
 }
